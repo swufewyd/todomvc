@@ -11,3 +11,15 @@ export function changeValue(value) {
       });
   };
 }
+
+export function setInput(value) {
+  return dispatch => {
+    HttpRequest.get('/api/client/info')
+      .end(()=>{
+        dispatch({
+          type: ActionTypes.SET_INPUT,
+          data: value
+        });
+      });
+  };
+}
