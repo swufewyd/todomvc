@@ -12,11 +12,11 @@ import { Router, browserHistory } from 'react-router';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
 
 import getRoutes from './routes';
-
+import {fromJS} from 'immutable';
 // const client = new ApiClient();
 const history = useScroll(() => browserHistory)();
 const dest = document.getElementById('content');
-const store = createStore(history, window.__data);
+const store = createStore(history, fromJS(window.__data));
 
 const component = (
   <Router routes={getRoutes()} history={history} />
@@ -37,15 +37,15 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-if (__DEVTOOLS__ && !window.devToolsExtension) {
-  const DevTools = require('./containers/DevTools/DevTools');
-  ReactDOM.render(
-    <Provider store={store} key="provider">
-      <div>
-        {component}
-        <DevTools />
-      </div>
-    </Provider>,
-    dest
-  );
-}
+// if (__DEVTOOLS__ && !window.devToolsExtension) {
+//   const DevTools = require('./containers/DevTools/DevTools');
+//   ReactDOM.render(
+//     <Provider store={store} key="provider">
+//       <div>
+//         {component}
+//         <DevTools />
+//       </div>
+//     </Provider>,
+//     dest
+//   );
+// }

@@ -24,8 +24,11 @@
   ],
   "main": "bin/server.js",
   "scripts": {
-    "start": "concurrent --kill-others \"npm run start-prod\"",
-    "start-prod": "better-npm-run start-prod",
+    "pack": "npm shrinkwrap --dev && shrinkpack .",
+    "start_test": "NODE_PATH=./src NODE_ENV=production PORT=8123 ./node_modules/forever/bin/forever start -a --uid 'sms_test' ./bin/server.js",
+    "stop_test": "./node_modules/forever/bin/forever stop sms_test",
+    "start_prod": "NODE_PATH=./src NODE_ENV=production PORT=8124 ./node_modules/forever/bin/forever start -a --uid 'sms_prod' ./bin/server.js",
+    "stop_prod": "./node_modules/forever/bin/forever stop sms_prod",
     "build": "better-npm-run build",
     "lint": "eslint -c .eslintrc src api",
     "start-dev": "better-npm-run start-dev",
@@ -36,15 +39,6 @@
     "test-node-watch": "./node_modules/mocha/bin/mocha $(find api -name '*-test.js') --compilers js:babel-core/register --watch"
   },
   "betterScripts": {
-    "start-prod": {
-      "command": "node ./bin/server.js",
-      "env": {
-        "NODE_PATH": "./src",
-        "NODE_ENV": "production",
-        "PORT": 8080,
-        "APIPORT": 3030
-      }
-    },
     "start-dev": {
       "command": "node ./bin/server.js",
       "env": {
@@ -71,6 +65,7 @@
     }
   },
   "dependencies": {
+    "antd": "0.12.12",
     "babel-core": "6.5.2",
     "babel-loader": "6.2.1",
     "babel-plugin-add-module-exports": "0.1.2",
@@ -84,25 +79,31 @@
     "babel-register": "6.3.13",
     "babel-runtime": "6.3.19",
     "body-parser": "1.14.1",
+    "classnames": "2.2.3",
     "compression": "1.6.0",
+    "crypto-js": "3.1.4",
     "express": "4.13.3",
     "express-session": "1.12.1",
     "file-loader": "0.8.5",
     "hoist-non-react-statics": "1.0.3",
     "http-proxy": "1.12.0",
+    "immutable": "3.7.6",
     "invariant": "2.2.0",
+    "lodash": "4.6.1",
     "lru-memoize": "1.0.0",
     "map-props": "1.0.0",
+    "moment-timezone": "0.5.3",
     "multireducer": "2.0.0",
     "piping": "0.3.0",
     "pretty-error": "1.2.0",
+    "radium": "0.16.6",
     "react": "0.14.2",
     "react-dom": "0.14.1",
     "react-helmet": "2.3.0",
     "react-redux": "4.0.0",
     "react-router": "2.0.0",
     "react-router-redux": "3.0.0",
-    "redux": "3.0.4",
+    "redux": "3.3.1",
     "redux-async-connect": "1.0.0-rc2",
     "redux-form": "3.0.12",
     "redux-thunk": "2.0.1",
@@ -129,9 +130,8 @@
     "eslint-plugin-import": "0.8.0",
     "eslint-plugin-react": "3.5.0",
     "extract-text-webpack-plugin": "0.9.1",
+    "forever": "0.15.1",
     "json-loader": "0.5.4",
-    "phantomjs": "1.9.18",
-    "phantomjs-polyfill": "0.0.1",
     "react-a11y": "0.2.6",
     "react-addons-test-utils": "0.14.0",
     "react-transform-catch-errors": "1.0.0",
