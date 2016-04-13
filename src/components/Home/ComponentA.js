@@ -1,12 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import {is} from 'immutable';
+import shallowEqual from 'helpers/shallowEqual';
 export default class ComponentA extends Component {
   static propTypes = {
     test: PropTypes.object,
     testBoundAC: PropTypes.object,
   };
   shouldComponentUpdate(nextProps) {
-    return !(this.props.test.get('A') === nextProps.test.get('A') || is(this.props.test.get('A'), nextProps.test.get('A')));
+    // console.log('nextProps', nextProps.test.get('A').toJS());
+    // console.log('this.props', this.props.test.get('A').toJS());
+    return shallowEqual(this.props.test.get('A'), nextProps.test.get('A'));
+    // return !(this.props.test.get('A') === nextProps.test.get('A') || is(this.props.test.get('A'), nextProps.test.get('A')));
   }
   changeValue = ()=>{
     this.props.testBoundAC.changeValue('wyd');
