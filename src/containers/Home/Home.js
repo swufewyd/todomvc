@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as testAC from 'redux/actions/test';
-import {ComponentA, ComponentB} from 'components';
+import {ComponentA, ComponentB, ComponentC} from 'components';
+
+
 @connect(
   state => ({test: state.test}),
   dispatch=>({testBoundAC: bindActionCreators(testAC, dispatch)}))
@@ -28,6 +30,7 @@ export default class Home extends Component {
         <img src={logoImage} />
         <ComponentA {...this.props} />
         <ComponentB {...this.props} />
+        <ComponentC {...this.props} />
       </div>
     );
   }

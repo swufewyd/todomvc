@@ -1,0 +1,16 @@
+.box {
+    width: 100px;
+    height: 100px;
+}
+
+.empty {
+    composes: box;
+
+    background: #4CAF50;
+}
+
+.full {
+    composes: box;
+
+    background: #F44336;
+}

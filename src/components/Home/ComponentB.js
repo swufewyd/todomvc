@@ -18,7 +18,7 @@ export default class ComponentB extends Component {
     this.props.testBoundAC.setInput(evt.target.value);
   }
   render() {
-    console.log('B renderd', this.props);
+    console.log('B renderd');
     return (<div>
             {this.props.test.getIn(['B', 'text'])}
             <input onChange={this.handleInputChange} value={this.props.test.getIn(['B', 'text'])} />
