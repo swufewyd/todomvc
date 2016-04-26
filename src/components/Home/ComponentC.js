@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import CSSModules from 'react-css-modules';
-import styles from './test.css';
+import cSSModules from 'react-css-modules';
+import styles from './test.less';
 
-@CSSModules(styles)
+@cSSModules(styles)
 export default class ComponentC extends Component {
 
   render() {
     console.log('C renderd');
     return (
-      <div styleName='box'>
+      <div styleName="empty">
         C
       </div>
     );

@@ -1,0 +1,15 @@
+.box {
+    composes: box from './base.less';
+}
+.empty {
+  composes: box;
+  background: #4CAF50;
+}
+.full {
+  composes: box;
+  background: #F44336;
+}
+
+:global .well {
+  background-color: #F44336;
+}
