@@ -1,7 +1,3 @@
-export const CLIENT_INFO = 'CLIENT_INFO';
-export const TEST = 'TEST';
-export const SET_INPUT = 'SET_INPUT';
-
 export const INIT_TODO = 'INIT_TODO';
 export const ADD_TODO = 'ADD_TODO';
 export const DEL_TODO = 'DEL_TODO';
