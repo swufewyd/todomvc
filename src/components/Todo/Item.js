@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-// import shallowEqual from 'helpers/shallowEqual';
+import shallowEqual from 'helpers/shallowEqual';
 
 export default class Item extends React.Component {
   static propTypes = {
@@ -9,9 +9,9 @@ export default class Item extends React.Component {
   constructor(props) {
     super(props);
   }
-  // shouldComponentUpdate(nextProps) {
-  //   return shallowEqual(this.props.item, nextProps.item);
-  // }
+  shouldComponentUpdate(nextProps) {
+    return shallowEqual(this.props.item, nextProps.item);
+  }
   handleDone = ()=>{
     this.props.todoBoundAC.toggleItemStatus(this.props.item);
   }
@@ -30,6 +30,7 @@ export default class Item extends React.Component {
     }
   }
   render() {
+    console.log('item renderd');
     const {id, status, text, canEdit} = this.props.item.toObject();
     return (
       <li className={status === 'Completed' ? 'completed' : ''} style={{height: '60px', opacity: '1'}}>

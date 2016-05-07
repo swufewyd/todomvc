@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-
+import shallowEqual from 'helpers/shallowEqual';
 export default class Header extends React.Component {
   static propTypes = {
     todoBoundAC: PropTypes.object,
@@ -7,6 +7,9 @@ export default class Header extends React.Component {
   };
   constructor(props) {
     super(props);
+  }
+  shouldComponentUpdate(nextProps) {
+    return shallowEqual(this.props.todo.get('currentInput'), nextProps.todo.get('currentInput'));
   }
   handleSubmit = (evt)=>{
     evt.preventDefault();
@@ -20,6 +23,7 @@ export default class Header extends React.Component {
     this.props.todoBoundAC.setCurrent(evt.target.value);
   }
   render() {
+    console.log('header renderd');
     return (
       <header className="header">
         <h1>todos</h1>

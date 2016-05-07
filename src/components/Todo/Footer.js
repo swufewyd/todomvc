@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-
+import shallowEqual from 'helpers/shallowEqual';
 export default class Footer extends React.Component {
   static propTypes = {
     todo: PropTypes.object,
@@ -8,10 +8,14 @@ export default class Footer extends React.Component {
   constructor(props) {
     super(props);
   }
+  shouldComponentUpdate(nextProps) {
+    return shallowEqual(this.props.todo.get('filter'), nextProps.todo.get('filter'));
+  }
   handleSelect = (filter)=> {
     this.props.todoBoundAC.toggleFilter(filter);
   }
   render() {
+    console.log('footer renderd');
     const filter = this.props.todo.get('filter');
     const listSize = this.props.todo.get('todoList').toArray().filter((obj)=>{
       return this.props.todo.get('filter') === 'All' ? true : obj.get('status') === this.props.todo.get('filter');
