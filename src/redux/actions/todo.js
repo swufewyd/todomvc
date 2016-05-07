@@ -33,7 +33,7 @@ export function addTodo(params) {
 
 export function delTodo(id) {
   return dispatch => {
-    HttpRequest.del(`/api/todo/${id}`)
+    HttpRequest.del(`/api/todo/item/${id}`)
       .end(()=>{
         dispatch({
           type: ActionTypes.DEL_TODO,
