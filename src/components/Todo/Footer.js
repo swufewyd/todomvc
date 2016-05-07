@@ -9,7 +9,7 @@ export default class Footer extends React.Component {
     super(props);
   }
   shouldComponentUpdate(nextProps) {
-    return shallowEqual(this.props.todo.get('filter'), nextProps.todo.get('filter'));
+    return shallowEqual(this.props.todo.get('filter'), nextProps.todo.get('filter'), this.props.todo.get('todoList'), nextProps.todo.get('todoList'));
   }
   handleSelect = (filter)=> {
     this.props.todoBoundAC.toggleFilter(filter);
